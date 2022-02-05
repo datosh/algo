@@ -37,6 +37,44 @@ func Test_factorial(t *testing.T) {
 	})
 }
 
+func Test_Swap(t *testing.T) {
+	t.Run("swap int", func(t *testing.T) {
+		a := 1337
+		b := 42
+
+		Swap(&a, &b)
+
+		assert.Equal(t, 42, a)
+		assert.Equal(t, 1337, b)
+	})
+
+	t.Run("swap string", func(t *testing.T) {
+		a := "abc"
+		b := "def"
+
+		Swap(&a, &b)
+
+		assert.Equal(t, "def", a)
+		assert.Equal(t, "abc", b)
+	})
+
+	t.Run("swap complex types", func(t *testing.T) {
+		type foo struct {
+			bar string
+			baz int
+		}
+		a := foo{"abc", 1337}
+		b := foo{"def", 42}
+
+		Swap(&a, &b)
+
+		assert.Equal(t, 42, a.baz)
+		assert.Equal(t, "def", a.bar)
+		assert.Equal(t, 1337, b.baz)
+		assert.Equal(t, "abc", b.bar)
+	})
+}
+
 func Test_Permutations(t *testing.T) {
 	t.Run("permutate slice of 3 ints", func(t *testing.T) {
 		numbers := []int{2, 3, 4}
@@ -61,25 +99,5 @@ func Test_Permutations(t *testing.T) {
 
 		assert.Len(t, permutations, 120)
 		assert.Equal(t, "hello", s)
-	})
-}
-
-func Test_Fold(t *testing.T) {
-	t.Run("summing slice of int", func(t *testing.T) {
-		numbers := []int{2, 3, 4, 5}
-		sumOp := func(a, b int) int { return a + b }
-
-		sum := Fold(sumOp)(numbers)
-
-		assert.Equal(t, 14, sum)
-	})
-
-	t.Run("concatenate strings", func(t *testing.T) {
-		words := []string{"this", "is", "freakin", "awesome"}
-		cat := func(s1, s2 string) string { return s1 + " " + s2 }
-
-		sentence := Fold(cat)(words)
-
-		assert.Equal(t, "this is freakin awesome", sentence)
 	})
 }

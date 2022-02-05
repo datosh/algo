@@ -21,6 +21,23 @@ package main
 
 import (
 	"fmt"
+
+	"github.com/datosh/algo"
+)
+
+func main() {
+	sum := algo.Fold(func(a, b int) int { return a + b })
+	numbers := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+	fmt.Println(sum(numbers)) // 45
+}
+
+```
+
+```go
+package main
+
+import (
+	"fmt"
 	"strings"
 
 	"github.com/datosh/algo"
@@ -52,6 +69,8 @@ To get an idea what is usually implemented in such a library I looked at
 
 ## Roadmap / Ideas
 
+* "Type cast" a slice of build-in types
+* "Type cast" a slice of complex types
 * Iterator based approach to support any data structure
     * [On Iteration - Andrei Alexandrescu](https://www.informit.com/articles/printerfriendly/1407357)
 
