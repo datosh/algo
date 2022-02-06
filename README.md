@@ -1,5 +1,7 @@
 # algo
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/datosh/algo.svg)](https://pkg.go.dev/github.com/datosh/algo)
+
 Algorithm library for golang1.18+ using
 [type parameters.](https://go.googlesource.com/proposal/+/refs/heads/master/design/43651-type-parameters.md)
 
